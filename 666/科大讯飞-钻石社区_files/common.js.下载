@@ -1,0 +1,385 @@
+﻿/**
+ * 初始化各组件
+ * 
+ * @desc
+ * @auth junji
+ * @version 2017/6/12 10:40
+ */
+$(function() {
+	tips.init("[tips]");
+
+	iflyuiTabs.init("ul[datatype='iflyuiTabs'] > li", "hover");
+
+	/* 搜索结果 */
+	search.tabs("ul[datatype='searchTabs'] > li", "click");
+	/* 查看上级领导 */
+	search.leader("i[datatype='leader']");
+	/* 上报错误信息 */
+	search.telError("i[datatype='telError']");
+
+		/*
+		 * getMyApp(); getNewApps();
+		 */
+	})
+	
+//$.ajaxSetup({
+//    contentType:"application/x-www-form-urlencoded;charset=utf-8",
+//    complete:function(XMLHttpRequest,textStatus){
+//        var sessionstatus=XMLHttpRequest.getResponseHeader("sessionstatus"); // 通过XMLHttpRequest取得响应头,sessionstatus，
+//        var url=XMLHttpRequest.getResponseHeader("url");
+//        // 如果超时就处理 ，指定要跳转的页面
+//        if(sessionstatus=='timeout'){
+//            // 跳转到登陆页面
+//        	layer.confirm('会话已过期，请重新登录', {
+//        		  btn: ['确定','取消'] // 按钮
+//        		}, function(){
+//        			top.location.href = ctx+"/logout";
+//        		}, function(){
+//        		});
+//        }
+//    }
+//});
+
+/* 讯飞114搜索 */
+$('#search114').on('click', function() {
+			var queryText = encodeURI(encodeURI($("#queryText").val()));
+			contentUrl = ctx + '/fornt/toSearch?queryText=' + queryText;
+			layer.open({
+						type : 2,
+						title : '讯飞114搜索',
+						/* shadeClose: true, */
+						shade : .8,
+						area : ['850px', '540px'],
+						content : contentUrl
+					});
+		});
+var flag = true;
+$('#queryTextLi').keydown(function(e) {
+			if (e.keyCode == 13 && flag) {
+				flag = false;
+				var queryText = encodeURI(encodeURI($("#queryText").val()));
+				contentUrl = ctx + '/fornt/toSearch?queryText=' + queryText;
+				layer.open({
+							type : 2,
+							title : '讯飞114搜索',
+							/* shadeClose: true, */
+							shade : .8,
+							area : ['850px', '540px'],
+							content : contentUrl,
+							cancel : function() {
+								flag = true;
+							}
+						});
+			}
+		});
+
+/* 编辑头像 */
+$('#headPortrait').on('click', function() {
+	layer.open({
+		type : 2,
+		title : '个人信息',
+		/* shadeClose: true, */
+		shade : .8,
+		area : ['465px', '465px'],
+		content : ctx + '/fornt/toHeadPortrait',
+		cancel : function() {
+			$.ajax({
+						type : 'POST',
+						url : ctx + '/headProtrait/getPic',
+						dataType : 'json',
+						success : function(data) {
+							if (data.status) {
+								$("#personalPic").attr('src', data.data.picUrl);
+							}
+						}
+					});
+		}
+	});
+});
+/* 薪资查询 */
+$('#searchSalaryResult').on('submit', function() {
+	var password = $("#userPassword").val();
+	console.log(password);
+	var passwordBase64 = BASE64.encoder(password);
+	console.log(passwordBase64)
+	parent.layer.open({
+				type : 2,
+				title : '工资单明细',
+				skin : 'ifly-salaryresult',
+				/* shadeClose: true, */
+				shade : .8,
+				btn : false,
+				area : ['640px', '550px'],
+				content : ctx + '/fornt/toSalaryResult?password='+ passwordBase64
+			});
+	closeSelf();
+});
+/* 应用中心 */
+$('#AppCenter').on('click', function() {
+			layer.open({
+						type : 2,
+						title : '应用中心',
+						/* shadeClose: true, */
+						shade : .8,
+						area : ['850px', '560px'],
+						content : ctx + '/fornt/app/toMyApp',
+						cancel : function() {
+							getMyApp();
+							// window.parent.location.href=ctx+"/fornt/index";
+						}
+					});
+		});
+
+/*
+ * 定义关闭Iframe页面按钮方法 本地环境下谷歌浏览器点击无响应，不用理他，正式路径下就行了
+ */
+function closeSelf() {
+	var index = parent.layer.getFrameIndex(window.name);
+	parent.layer.close(index);
+}
+
+/* 鼠标悬停增加信息提示 */
+var tips = {
+	init : function(obj) {
+		var a;
+		$(obj).on('mouseenter', function() {
+					a = layer.tips($(this).attr('tips'), this, {
+								time : 0
+							});
+				}).on('mouseleave', function() {
+					layer.close(a);
+				})
+	}
+}
+
+/* 绑定多标签切换事件 */
+var iflyuiTabs = {
+	init : function(obj, mouse) {
+		$(obj).on(mouse, function() {
+			var ix = $(this).index(), tab = $(this).parent().siblings('ul')
+					.children('li');
+			$(this).siblings().removeClass('iflyui-box-title-this');
+			$(this).addClass('iflyui-box-title-this');
+			tab.hide();
+			tab.eq(ix).show();
+		})
+	}
+}
+
+/*
+ * 提示框 @ msg 提示信息 @ icon icon-warning 提醒 icon-success 成功 icon-loading 加载
+ */
+var tipsBox = {
+	count : 0,
+	init : function(msg, icon) {
+		this.count++;
+		var warning = '<div class="iflyui-tips-box" id="iflyui-tips-box-'
+				+ this.count + '"><div class="iflyui-' + icon + '"></div>'
+				+ msg + '</div>';
+		$('body').append(warning);
+		setTimeout("$('#iflyui-tips-box-" + this.count + "').remove()", 2000)
+	}
+}
+
+var loading = {
+	count : 0,
+	init : function(msg, icon) {
+		this.count++;
+		var warning = '<div class="loading-box"><div class="loading-mask"></div><div class="iflyui-tips-box" id="iflyui-tips-box-'
+				+ this.count
+				+ '"><div class="iflyui-'
+				+ icon
+				+ '"></div>'
+				+ msg + '</div></div>';
+		$('body').append(warning);
+	},
+	close : function() {
+		$('.loading-box').remove();
+	}
+}
+
+/* 搜索结果多标签切换事件 */
+var search = {
+	tabs : function(obj) {
+		$(obj).on('click', function() {
+			var ix = $(this).index(), tab = $(this).parent().next('ul')
+					.children('li');
+			$(this).siblings().removeClass('iflyui-this');
+			$(this).addClass('iflyui-this');
+			tab.hide();
+			tab.eq(ix).show();
+		})
+	},
+	leader : function(obj) {
+		$(obj).on('click', function() {
+			var leaderCode = $(this).find('input').val();
+			if (leaderCode == null || leaderCode == '') {
+				layer.msg('此员工无上级领导！');
+				return;
+			}
+			parent.layer.open({
+						type : 2,
+						title : '查看上级领导',
+						/* shadeClose: true, */
+						shade : .8,
+						area : ['550px', '180px'],
+						content : ctx + '/search/getLeaderInfo?emplCode='
+								+ leaderCode
+					});
+		})
+	},
+	telError : function(obj) {
+		$(obj).on('click', function() {
+					var accountName = $(this).find('input').val();
+					var params = {
+						accountName : accountName
+					}
+					layer.confirm('是否确认对Ta提醒？', {
+								btn : ['确定'], // 按钮
+								icon : 3,
+								title : '提醒确认',
+								shade : .8,
+								shadeClose : true
+							}, function() {
+								$.ajax({
+											type : 'POST',
+											url : ctx + '/search/phoneNumTip',
+											data : params,
+											dataType : 'json',
+											success : function(data) {
+												if (data.status) {
+													layer.msg('提示成功')
+												}
+											}
+										});
+							});
+
+				})
+	}
+}
+
+function downLoad(x) {
+	layer.open({
+				type : 2,
+				title : '下载中心',
+				/* shadeClose: true, */
+				shade : .8,
+				area : ['950px', '540px'],
+				content : ctx + '/fornt/downLoadCenter?id=' + x
+			});
+}
+/*******************************************************************************
+ * 
+ */
+function closeAndReflush() {
+	window.parent.location.href = ctx + "/fornt/index";
+}
+
+/*
+ * 扩展方法
+ */
+$.fn.extend({
+			// 判断新闻标题文字超出增加省略号
+			substr : function(option) {
+				var opt = ({}, {
+					num : 65
+				}, option);
+				return $(this).each(function() {
+							var self = $(this), html = self.html();
+							if (html.length > opt.num) {
+								self.html(html.substr(0, opt.num) + '...')
+							}
+						})
+			},
+			// 新闻标题自动缩放
+			totalNums : function(option) {
+				var opt = ({}, {
+					num : 30
+				}, option);
+
+				var th = $(this);
+				var warn = '<div class="warn-num">' + 0 + '/' + opt.num;
+				th.after(warn);
+				return th.each(function() {
+							return th.on("keyup", function() {
+										var self = $(this);
+										if (self.val().length <= opt.num) {
+											self
+													.next(".warn-num")
+													.html(parseInt(self.val().length)
+															+ "/" + opt.num)
+										} else {
+											self.val(self.val().substr(0,
+													opt.num));
+											layer.msg("已超过规定字数！")
+										}
+									})
+						})
+			}
+		})
+
+function serviceFn(){
+	$.ajax({
+		type: 'POST',
+		url:  ctx + '/fornt/getCsInfo',
+		dataType: 'json',
+		success: function (data) {
+			$.ajax({
+				type: 'POST',
+				url:  'https://'+data.restServer+'/'+data.orgName+'/'+data.appName+'/users',
+				data:'{"grant_type":"password","username":"'+data.accountName+'","password":"'+data.password+'"}',
+				dataType: 'json',
+				success:function(){
+					window.easemobim = window.easemobim || {};
+					easemobim.config = {
+						hide: true,
+						autoConnect: true,
+						configId: data.configId,
+						restServer: data.restServer,
+						xmppServer: data.xmppServer,
+						user: {
+							username: data.accountName,
+							password: data.password,
+						}
+					}
+					easemobim.bind({configId: data.configId})
+				},
+				error: function (xhr) {
+					if(xhr.status==400){
+						window.easemobim = window.easemobim || {};
+						easemobim.config = {
+							hide: true,
+							autoConnect: true,
+							configId: data.configId,
+							restServer: data.restServer,
+							xmppServer: data.xmppServer,
+							user: {
+								username: data.accountName,
+								password: data.password,
+							}
+						};
+						easemobim.bind({configId: data.configId})
+					}
+				}
+			});
+		}
+	});
+}
+
+var common = {
+	ajax : function(url, data, successfn, errorfn){
+		data = (data==null || data=="" || typeof(data)=="undefined")? {"date": new Date().getTime()} : data;
+		$.ajax({
+			url: url,
+			data: data,
+			type: "post",
+			dataType: 'json',
+			success: function(d){
+				successfn(d);
+			},
+			error: function(d){
+				errorfn(d);
+			}
+		});
+	}
+};

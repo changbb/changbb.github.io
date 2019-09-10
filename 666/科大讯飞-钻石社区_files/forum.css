@@ -1,0 +1,28 @@
+﻿/**
+ * 首页
+ * @ desc
+ * @ auth junji
+ * @ version 2017/9/4 11:10
+ */
+.iflyui-hd {
+    position:fixed;
+    width:100%;
+}
+.ifly-forum-main{
+    position:fixed;
+    bottom:40px;
+    left:0;
+    right: 0;
+    top:66px;
+    width:100%;
+    z-index:310;
+}
+.iflyui-ft {
+    bottom: 0;
+    left: 0;
+    padding: 10px 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 300;
+}

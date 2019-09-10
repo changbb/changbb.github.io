@@ -1,0 +1,1454 @@
+﻿/**
+ * 初始化重置全局字体，颜色，行间距，内外边距
+ * @ desc
+ * @ auth junji
+ * @ version 2017/6/12 10:40
+ */
+body,html{overflow-x:hidden;background-color:transparent}
+body,
+.layui-table td,
+.layui-table th{
+    font-size:12px;
+    font-family:"Microsoft YaHei", "sans-serif";
+    color:#5d5d5d;
+    line-height:1.5
+}
+body,ul,ol,li,dl,dt,dd,form{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+button,img{border:0}
+input,button{font-family:"Microsoft YaHei", "sans-serif";}
+a{color:#5d5d5d;text-decoration:none}
+input,button,select,textarea{outline:0;resize:none;}
+img{border:0}
+a:hover{color:#111;text-decoration:none}
+label{
+    color:#999
+}
+
+/*针对chrome浏览器渲染滚动条样式*/
+::-webkit-scrollbar {
+    width:6px;
+    height:6px;
+}
+::-webkit-scrollbar-thumb{
+    background:#aeaeae;
+    border-radius:10px;
+}
+
+::-webkit-input-placeholder{
+    color:#999;
+}
+:-moz-placeholder {
+    color:#999;
+}
+::-moz-placeholder {
+    color:#999;
+}
+:-ms-input-placeholder {
+    color:#999;
+}
+.iflyui-inline{
+    display:inline-block;
+    *display:inline;
+}
+.layui-form-checkbox span{
+    padding-left:5px;
+    padding-right:5px;
+    font-size:12px
+}
+.layui-form-radio span{
+    font-size:12px
+}
+.layui-form-radio{
+    margin-top:0
+}
+.layui-form-radio i{
+    font-size:16px
+}
+/*浮动：左和右*/
+.iflyui-fl{
+    float:left
+}
+.iflyui-fr{
+    float:right
+}
+.iflyui-hide{
+    display:none;
+}
+.iflyui-show{
+    display:block
+}
+
+/*文本：居左，中，右*/
+.iflyui-tl{
+    text-align:left!important
+}
+.iflyui-tc{
+    text-align:center!important
+}
+.iflyui-tr{
+    text-align:right!important
+}
+.iflyui-md{
+    vertical-align:middle
+}
+.iflyui-f14{
+    font-size:14px
+}
+/*加粗*/
+.iflyui-b{
+    font-weight:bold
+}
+.iflyui-red{
+    color:#f00
+}
+/*去除layui表格外边距*/
+.layui-table{
+    margin:0;
+}
+.layui-table td,
+.layui-table th{
+    padding:8px;
+	color:#666;
+	box-sizing:border-box;
+}
+.layui-table tbody tr:nth-child(2n){
+	background:#f9f9f9
+}
+.layui-table tbody tr:hover{
+	background:#d6f1f5;
+	border-color:#d6f1f5;
+}
+.layui-table tr:hover td{
+	color:#000
+}
+
+/*清除浮动*/
+.iflyui-clear{
+    zoom:1;
+    overflow:hidden;
+}
+/*定义iflyui表格，不带边框，只有底部边框*/
+.iflyui-table,
+.iflyui-item-table{
+    width:100%;
+    border-collapse:collapse;border-spacing:0
+}
+.iflyui-table th{
+    font-weight:normal
+}
+.iflyui-table td{
+    border-bottom:1px solid #eee
+}
+.iflyui-item-table td{padding:4px}
+
+/*表格文字溢出隐藏*/
+.iflyui-table-fixed{
+    table-layout:fixed;
+}
+.iflyui-table-fixed td,
+.iflyui-table-fixed th{
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+
+/*当表格选项过多，需要增加滚动条时，则需定义外层容器固定宽度*/
+.iflyui-fix-width{
+    width:1550px
+}
+
+/*定义弹出层容器内部当高度超出时增加滚动条*/
+.iflyui-margins-iframe{
+    padding:10px;
+    overflow:auto;
+    max-height:420px
+}
+.layui-form-item{
+    zoom:1
+}
+.layui-input[disabled='true'], .layui-select[disabled='true'], .layui-textarea[disabled='true']{
+    background:#f8f8f8
+}
+.layui-input, .layui-select, .layui-textarea{
+	height:36px;
+	line-height:36px;
+}
+/*加载*/
+.iflyui-tips-box{
+    text-align:center;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    color:#fff;
+    border-radius:3px;
+    margin:0 auto;
+    padding:18px;
+    width:65px;
+    background:#444;
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    margin:-50px\9;
+    text-align:center;
+    font-size:12px;
+    animation:iflyui-bounceIn .2s linear;
+    opacity:1;
+}
+@keyframes iflyui-bounceIn{
+    0% {
+        opacity: 0;
+        margin-top:10px
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.iflyui-tips-box .iflyui-icon-loading{
+    width:32px;
+    height:32px;
+    margin:0 auto 10px;
+    background:url(../img/icons/iflyui-icon-loading.png) no-repeat;
+    animation:iflyui-rotate 1.2s infinite linear;
+}
+@keyframes iflyui-rotate{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+.iflyui-tips-box .iflyui-icon-success{
+    background:url(../img/icons/iflyui-icon-success.png) no-repeat;
+    width:32px;
+    height:32px;
+    margin:0 auto 10px;
+}
+
+.iflyui-tips-box .iflyui-icon-warning{
+    background:url(../img/icons/iflyui-icon-warning.png) no-repeat;
+    width:32px;
+    height:32px;
+    margin:0 auto 10px;
+}
+/*按钮间距*/
+.iflyui-pages .layui-layer-btn a{
+    margin-right:3px;
+}
+
+/*默认颜色：包含tag，button，选中颜色*/
+.iflyui-btn,
+.iflyui-hd,
+.layui-btn,
+.layui-layer-btn .layui-layer-btn0{
+    background-color:#0095c5;
+	border-color:#0095c5
+}
+
+/*需要特别提醒的文字颜色*/
+.iflyui-spot{
+    color:#ffa133
+}
+
+/*不重要的文字颜色*/
+.iflyui-gray{
+    color:#999
+}
+
+/*定义私有图标*/
+.iflyui-icon{
+    background-image:url(../img/icons/iflyui-icons.png);
+    background-repeat:no-repeat;
+    width:22px;
+    height:22px;
+    display:inline-block;
+    vertical-align:middle
+}
+.iflyui-icon-video{
+    background-position:0 -24px;
+    width:19px;
+    height:19px
+}
+.iflyui-icon-img{
+    background-position:0 -53px;
+    width:20px;
+    height:16px
+}
+.iflyui-icon-my-baoxiao{
+    background-position:5px -79px;
+}
+.iflyui-icon-my-baoxiu{
+    background-position:-41px -79px;
+    width:45px!important;
+}
+.iflyui-icon-my-Meeting{
+    background-position:-99px -79px;
+}
+.iflyui-icon-my-car{
+    background-position:-149px -79px;
+}
+.iflyui-icon-my-meal{
+    background-position:-195px -79px;
+}
+.iflyui-icon-my-leave{
+    background-position:-243px -79px;
+    width:45px!important
+}
+.iflyui-icon-my-work{
+    background-position:-297px -79px;
+}
+.iflyui-icon-my-salary{
+    background-position:-337px -79px;
+}
+.iflyui-btn-nomsg{
+    margin:0 auto 7px;
+    background-position:-182px -182px;
+    width:83px;
+    height:76px;
+    display:block;
+}
+/*定义tag标签，比button小，有几种状态：默认，成功，提醒*/
+.iflyui-tag{
+    display:inline-block;
+    border:1px solid #c9c9c9;
+    overflow:hidden;
+	background-color:#fff;
+    border-radius:2px;
+    padding:0 3px;
+    color:#333;
+    cursor:pointer;
+    font-size:12px;
+    line-height:18px;
+    opacity:0.9;
+    text-align:center;
+    vertical-align:middle;
+    font-style:normal;
+}
+.iflyui-tag:hover{opacity:0.8}
+.iflyui-tag:active{opacity:1}
+
+.iflyui-tag-warm{color:#ffa133;border-color:#ffa133}
+.iflyui-tag-ok{color:#4cb5d6;border-color:#4cb5d6}
+.iflyui-tag-warm:hover{color:#fff;background-color:#ffa133}
+
+/*定义button按钮，有几种状态：默认，蓝色，提醒，不可点*/
+.iflyui-btn{
+    position:relative;
+    border:1px solid #0095c5;
+    border-radius:2px;
+    color:#fff;
+    cursor:pointer;
+    display:inline-block;
+    font-size:12px;
+    height:36px;
+    line-height:36px;
+    padding:0 18px;
+    text-align:center;
+    white-space:nowrap;
+    overflow:hidden;
+    vertical-align:middle;
+    transition:all 0.2s linear 0s;
+}
+.iflyui-btn:hover{opacity:0.8}
+.iflyui-btn:active,
+.layui-layer-btn a:active{opacity:1;box-shadow:0 2px 2px rgba(0,0,0,.1) inset;}
+.iflyui-btn-disabled:active{box-shadow:0 0 0 rgba(0,0,0,.1) inset;opacity:0.9;}
+
+.iflyui-btn-normal{background-color:#fff;border-color:#c9c9c9;color:#333;}
+.iflyui-btn-warm{background-color:#2d2f3d ;border-color:#2d2f3d ;color:#fff;}
+.iflyui-btn-disabled{background-color:#f9f9f9;border-color:#c9c9c9;color:#999;cursor:not-allowed}
+
+.iflyui-btn-normal:hover{background-color:#f2f2f2}
+.layui-form-radio i:hover, .layui-form-radioed i{
+    color:#3eb4c6
+}
+.layui-btn {
+    background-color:#0095c5;
+    border:1px solid#0095c5;
+    border-radius:2px;
+    color:#fff;
+    cursor:pointer;
+    display:inline-block;
+    font-size:14px;
+    line-height:36px;
+    padding:0 18px;
+    text-align:center;
+    white-space:nowrap;
+    transition:all 0.2s linear 0s;
+}
+.layui-btn:hover{
+    opacity:0.8;
+}
+/*缩小button里面的间距*/
+.iflyui-btn-pd{
+    padding:0 7px
+}
+/*去除layui按钮间距*/
+.layui-btn + .layui-btn{
+    margin:0
+}
+
+/*定义全局当前状态样式*/
+a.iflyui-tag:hover,
+.layui-form-select dl dd.layui-this,
+.layui-form-onswitch,
+.layui-form-checked[lay-skin="primary"] i,
+.layui-form-checked{
+    border-color:#3eb4c6 ;
+    background-color:#3eb4c6 ;
+    color:#fff
+}
+.layui-form-checkbox[lay-skin="primary"]:hover i,
+.layui-form-checked:hover{
+    border-color:#548bff
+}
+/*最小文本框样式，通常写数字用*/
+.iflyui-input-num{
+    width:50px;
+    text-align:center
+}
+.layui-input, .layui-textarea{
+	line-height:20px;
+	border:1px solid #d2d2d2
+}
+/*定义小宽度input：最小，小，中，大*/
+.layui-form-item .layui-input-min{
+    width:100px
+}
+
+.layui-form-item .layui-input-min-s{
+    width:120px
+}
+
+.layui-form-item .layui-input-min-m{
+    width:140px
+}
+
+.layui-form-item .layui-input-min-l{
+    width:160px
+}
+
+.layui-layer-tips .layui-layer-content{
+    background-color:#333
+}
+.layui-layer-tips i.layui-layer-TipsL, .layui-layer-tips i.layui-layer-TipsR{
+    border-bottom-color:#333
+}
+
+/*弹出层样式*/
+.layui-layer .layui-layer-setwin{
+    right:16px;
+    top:9px
+}
+.layui-layer-title{
+    font-weight:bold
+}
+.layui-layer .layui-layer-setwin a,
+.layui-layer-setwin .layui-layer-close2:hover{
+    background:url(../img/icons/iflyui-icon-close.png) no-repeat 50% 50%;
+    width:26px;
+    height:26px;
+}
+
+/*低版本浏览器提示*/
+.iflyui-ie{
+	position:relative;
+    background:#fff;
+	border:1px solid #eee;
+    width:100%;
+    color:#f00;
+    padding:10px;
+    text-align:center;
+    z-index:310;
+    font-size:14px
+}
+.iflyui-ie i{
+	display:inline-block;
+	margin:0 1em;
+	width:25px;
+	height:25px;
+	line-height:25px;
+	border:1px solid #eee;
+	background:#fff;
+	text-align:center;
+	font-size:16px;
+	color:#111;
+	font-weight:normal;
+	font-style:normal;
+	cursor:pointer
+}
+
+/*
+弹出层内部内部样式
+*** button
+*/
+.iflyui-fixed-btn{
+    position:fixed;
+    bottom:0;
+    left:0;
+    margin:0;
+    padding:0;
+    width:100%;
+    display:table;
+    [;bottom:-2px;]
+}
+.iflyui-fixed-btn li{display:table-cell}
+.iflyui-fixed-btn .layui-btn{border-radius:0 0 3px 3px;display:block;width:100%}
+.layui-btn-warm{background:#ffad2d;border-color:#ffad2d;}
+.db-btn li:first-child .layui-btn{border-radius:0 0 0 3px;}
+.db-btn li:last-child .layui-btn{border-radius:0 0 3px 0;}
+.layui-layer-msg{
+    color:#fff
+}
+.iflyui-margins{
+    /*max-width:1366px;
+    margin:0 auto;*/
+}
+
+.layui-layer-iframe{
+    background:#f2f2f2;
+    border-radius:0 0 3px 3px;
+}
+.layui-textarea-auto{
+    box-sizing: border-box;
+    width:100%;
+    height:100%;
+    padding:8px 10px;
+    font-size:13px;
+    color:#666;
+    font-family:"Microsoft YaHei", "sans-serif";
+}
+/*内容超出高度判断*/
+.iflyui-pages-detail .iflyui-margins{
+    padding: 10px;
+    max-height:420px;
+    overflow:auto;
+}
+
+.iflyui-pages{
+    background:#f0f0f0/* url(../img/iflyui-pages-bg.jpg) no-repeat fixed*/;
+}
+
+.iflyui-hd{
+    position:relative;
+    z-index:666;
+    background:#fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+.iflyui-hd .iflyui-wrap{
+    position:relative;
+    padding:0 20px;
+    margin:0 auto
+}
+.iflyui-logobox{
+    padding:12px 0
+}
+.iflyui-logo{
+    margin:0;
+    background:url(../img/iflyui-logo.png) no-repeat;
+    display:block;
+    width:240px;
+    height:42px;
+    position:relative;
+}
+.iflyui-logo a{
+    display:block;
+    color:#fff;
+    width:100%;
+    height:100%
+}
+.iflyui-logo a i{
+    position:absolute;
+    right:0;
+    bottom:3px;
+    background:#0095c5;
+    display:block;
+    text-align:center;
+    font-style:normal;
+    font-size:15px;
+    width:80px;
+    height:27px;
+    line-height:27px;
+    border-radius:2px;
+    font-weight:normal
+}
+.iflyui-logo a i:after{
+    position:absolute;
+    left:0;
+    margin:8px 0 0 -10px;
+    border: 5px solid #0095c5;
+    border-left-color:transparent;
+    border-top-color:transparent;
+    border-bottom-color:transparent;
+    width:0;
+    height:0;
+    content: '.'
+}
+
+/*右侧导航和搜索区域*/
+.iflyui-menubox{
+    position:absolute;
+    right:20px;
+    top:0;
+}
+.iflyui-menubox-menu{
+    margin-right:30px;
+    font-size:15px;
+    vertical-align:top;
+    overflow:hidden;
+}
+.iflyui-menubox-search{
+    vertical-align:-22px;
+}
+.iflyui-menubox-menu li{
+    margin:0 40px;
+    display:inline-block;
+    *display:inline;
+    line-height:62px;
+}
+.iflyui-menubox-menu li.iflyui-this{
+    border-bottom:4px solid #0095c5;
+}
+.iflyui-menubox-menu li.iflyui-this a{
+    color:#0095c5
+}
+
+.iflyui-input{
+    padding:0 10px;
+    height:36px;
+    line-height:34px;
+    border:1px solid #d2d2d2;
+    border-radius:2px;
+    box-sizing:border-box;
+    vertical-align:middle;
+    transition:all 0.2s linear 0s;
+	width:100%;
+    font-size:12px;
+	box-sizeing:border-box
+}
+.iflyui-input:hover{
+    border-color:#bbb
+}
+.iflyui-input[disabled]{
+    background-color:#f2f2f2
+}
+.iflyui-btn-search{
+    text-align:center;
+    margin-left:-5px;
+    padding-right:16px;
+    background-position:10px 10px;
+    border-radius:0 2px 2px 0
+}
+
+.iflyui-cnt{
+    padding:15px 20px 5px;
+    margin:0 auto;
+}
+
+.iflyui-box{
+    margin-bottom:10px;
+    border:1px solid #ddd;
+    background:#fff;
+    position:relative;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+.iflyui-box-title{
+    position:relative;
+    font-size:14px;
+    color:#111;
+    padding:0 18px;
+    line-height:36px;
+    height:36px;
+    overflow:hidden;
+    background:#f6f6f6 url(../img/iflyui-box-title-bg.jpg) no-repeat 0 50%;
+    font-weight:bold;
+}
+.iflyui-box-title .iflyui-fr{
+    margin-top:-2px;
+    font-weight:normal;
+    font-size:12px
+}
+.iflyui-box-title .iflyui-fr li{
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+}
+.iflyui-box-title .iflyui-fr li{
+    padding-left:10px
+}
+.iflyui-box-content{
+    padding:15px
+}
+
+.layui-layer-title{
+    background:#fff;
+}
+.layui-layer{
+    border-radius:4px
+}
+.layui-layer-msg{
+    background:rgba(0,0,0,.7)
+}
+/*底部版权*/
+.iflyui-ft{
+    padding:10px 0;
+    width:100%;
+    border-top:1px solid #d4d5d8;
+    text-align:center;
+    z-index:300;
+}
+
+/*个人中心*/
+.iflyui-usercenter{
+    padding-bottom:21px;
+    height: 74px;
+    overflow: hidden;
+}
+.iflyui-face{
+    position:relative;
+    float:left;
+    margin:0px auto;
+    top:5px;
+    width:70px;
+    height:70px;
+    border-radius:100%;
+    background-position:17px -115px;
+    background-color:#e9e9e9
+}
+.iflyui-face img{
+    width:70px;
+    height:70px;
+    border-radius:100%;
+    display:block
+}
+.iflyui-msg{
+    width:16px;
+    height:16px;
+    line-height:16px;
+    display:block;
+    background-color:#ff503f;
+    color:#fff;
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:11px;
+    font-style:normal;
+    font-weight:normal;
+    text-align:center;
+    border-radius:100%;
+    cursor:pointer;
+    z-index:10
+}
+.iflyui-usercenter .iflyui-baseinfo{
+    margin:0 0 0 85px;
+    padding:8px 0 0 15px;
+    line-height:1.8;
+    background:url(../img/iflyui-baseinfo-lead.png) no-repeat 0 13px;
+}
+.iflyui-usercenter .iflyui-baseinfo .iflyui-tag{
+    margin-left:5px;
+    max-width:130px;
+    height:18px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.iflyui-dealt{
+    border-top:1px solid #e6e6e6;
+    margin:0;
+    text-align:center;
+    height: 92px;
+    overflow: hidden;
+}
+.iflyui-box-usercenter{
+    padding:0
+}
+#headPortrait{
+    margin:0;
+    padding:15px 15px 21px
+}
+#headPortrait:hover{
+    background-color:#fbfbfb;
+    color:#111
+}
+.iflyui-dealt li{
+    width:50%;
+    float:left;
+    box-sizing:border-box;
+    transition:all 0.2s linear 0s;
+    border-right:1px solid #f0f0f0
+}
+.iflyui-dealt li a{
+    padding:12px 0 17px;
+	display:block;
+	width:100%;
+	height:100%
+}
+.iflyui-dealt li:hover{
+    background-color:#f8f8f8
+}
+.iflyui-dealt li i{
+    display:block;
+    font-size:30px;
+    font-style:normal;
+}
+.iflyui-dealt li i{
+    color:#66cc66
+}
+.iflyui-dealt li:first-child i{
+    color:#0095c5
+}
+.iflyui-dealt li:last-child i{
+    color:#ff503f
+}
+.iflyui-usercenter-all{
+    position:absolute;
+    right:0;
+    top:113px;
+    width:42px;
+    height:34px;
+    background:url(../img/iflyui-usercenter-all.png) no-repeat;
+    cursor:pointer;
+}
+.iflyui-box-title .iflyui-btn{
+    padding:0 4px;
+    height:24px;
+    line-height:24px
+}
+
+.iflyui-news{
+    position:absolute;
+    right:10px;
+    top:10px;
+    background:#ff503f;
+    width:8px;
+    height:8px;
+    border-radius:100%;
+}
+
+/*
+搜索结果*/
+
+.iflyui-pages-detail .iflyui-menubox-search{
+    vertical-align:0;
+    position:relative;
+}
+.iflyui-pages-detail .iflyui-menubox-search .iflyui-btn-search{
+    position:absolute;
+    right:0;
+    top:0
+}
+.iflyui-search-category{
+    margin:10px -10px 0;
+    padding:0 10px;
+    background:#f6f6f6;
+    border-top:1px solid #ddd;
+    font-size:0
+}
+
+.iflyui-search-category li{
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    font-size:12px
+}
+.iflyui-search-category label{
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    padding:10px 15px;
+}
+.iflyui-search-category li.iflyui-this{
+    background:#fff url(../img/iflyui-box-title-this.jpg) repeat-x;
+    color: #0095c5;
+    font-weight: bold;
+}
+.iflyui-search-category li.iflyui-this label{
+    color: #0095c5;
+}
+.iflyui-search-category li label{
+    color:#555;
+}
+.iflyui-search-category li input{
+   vertical-align:top
+}
+.iflyui-search-result{
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    margin:0 -10px;
+    padding:10px 15px;
+}
+.iflyui-search-result-content{
+}
+.iflyui-search-result-content .iflyui-usercenter .iflyui-face{
+    position:relative;
+    top:8px
+}
+.iflyui-search-result-content .iflyui-box-usercenter{
+    padding:10px 0 20px;
+    border-bottom:1px dotted #ddd;
+}
+.iflyui-search-result-content .iflyui-box-usercenter:last-child{
+    border-bottom:0;
+    padding-bottom:0
+}
+.iflyui-search-result-content .iflyui-usercenter{
+    padding:0 0 10px
+}
+
+.iflyui-search-result-msg li{
+    border-bottom:1px dotted #ddd;
+    padding:10px 0;
+}
+.iflyui-search-result-msg li h3 a{
+    color:#0095c5
+}
+.iflyui-search-result-msg li h3{
+    margin:0 0 10px
+}
+.iflyui-search-result-msg li p{
+    margin:0
+}
+.iflyui-search-result-msg li:last-child{
+    /*padding-bottom:5px;*/
+    border:0
+}
+.iflyui-box-myapp-content .iflyui-search-result-msg li:last-child a{
+    border:1px solid #fff
+}
+.iflyui-box-myapp-content .iflyui-search-result-msg li:hover a{
+    border-color:#f2f2f2
+}
+
+.iflyui-pages-detail .iflyui-item{
+    border:1px solid #e2e2e2;
+    margin:0 0 10px
+}
+.iflyui-pages-detail .iflyui-item dd{
+    border-bottom:1px solid #e2e2e2;
+    padding:9px 15px;
+    color:#111;
+    background:#fff;
+    font-size:12px
+}
+.iflyui-pages-detail .iflyui-item dd:last-child{
+    border-bottom:0
+}
+.iflyui-pages-detail .iflyui-item dd .iflyui-value{
+    float:right;
+    color:#999
+}
+.iflyui-headportrait-edit{
+    padding:10px;
+    text-align:center;
+    margin:0 auto
+}
+.iflyui-headportrait-edit .iflyui-face{
+    top:0;
+    float:none
+}
+.iflyui-pages-detail .iflyui-item dd:nth-child(2n){
+    background:#f9f9f9;
+}
+#crop-avatar .avatar-view{
+    margin:0 auto 10px;
+    width:120px;
+    height:120px
+}
+.modal-content{
+    border-radius:3px
+}
+.avatar-wrapper {
+    height:200px
+}
+.modal-header {
+    padding:6px 15px;
+}
+.modal-header h4{
+   font-size:14px
+}
+.avatar-upload #avatarInput{
+    margin:0;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity:0;
+    filter:alpha(opacity=0)\9;
+}
+.avatar-btns{
+    margin:15px 0 3px
+}
+.iflyui-icon-webadmin{
+    background-position: -279px -353px;
+}
+.iflyui-icon-loginot{
+    background-position: -304px -353px;
+}
+.iflyui-icon-refresh{
+    background-position: -331px -358px;
+    width:16px;
+    height:16px;
+}
+.iflyui-icon-refresh:hover{
+     background-position: -331px -380px;
+    width:16px;
+    height:16px;
+}
+.iflyui-icon-refresh-hover{
+    background-position: -331px -380px;
+    animation:iflyui-icon-refresh-hover .6s infinite linear;
+}
+@keyframes iflyui-icon-refresh-hover{
+    0%{
+        transform:rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
+}
+.iflyui-box-title .iflyui-fr li:hover .iflyui-icon-webadmin{
+    background-position: -279px -377px;
+}
+.iflyui-box-title .iflyui-fr li:hover .iflyui-icon-loginot{
+    background-position: -304px -377px;
+}
+#headPortrait{
+    cursor:pointer
+}
+.iflyui-nomsg{
+    color:#999
+}
+.iflyui-pages-detail .iflyui-article-box{
+    background:#fff;
+    max-height:475px;
+}
+.iflyui-article-box-hd{
+    padding:10px 10px 20px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    color:#111;
+    font-size: 20px;
+    font-weight: bold;
+    line-height:32px;
+    margin:0 10px 15px
+}
+.iflyui-article-box-bd{
+    font-size:16px;
+    line-height:1.8;
+    padding:10px;
+    color:#333
+}
+.iflyui-article-box-bd img{
+  max-width:790px;
+  height:auto
+}
+.iflyui-article-box-bd p{
+    margin:0
+}
+.iflyui-news-atlas-page {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3)!important;
+}
+.iflyui-news-atlas-page .layui-layer-setwin a {
+    background:url(../img/icons/iflyui-icon-close3.png) no-repeat 50% 50%!important;;
+}
+.iflyui-news-atlas-page,
+.iflyui-pages-news {
+    background-color: transparent!important;;
+}
+.iflyui-news-atlas-page .layui-layer-setwin{
+    top:20px
+}
+.ifly-service{
+    margin-left:15px;
+    background:url(../img/icons/icon-service.png?id=2019) no-repeat;
+    width:34px;
+    height:27px;
+    vertical-align:middle;
+    background-size:100%;
+    cursor:pointer
+}
+.ifly-mail{
+    color:#333
+}
+.ifly-mailevaluate .layui-layer-title{
+    display:none
+}
+.ifly-mail-input{
+}
+.ifly-mail-tabs-content{
+    padding:15px 15px 0;
+    border-left:1px solid #f0f0f0;
+    box-sizing:border-box;
+    height:500px;
+    overflow-y:auto;
+}
+.ifly-mail-tabs-content > li.ifly-this{
+    display:block;
+}
+.ifly-mail-tabs-content > li{
+    display:none
+}
+.ifly-mail-text{
+    box-sizing: border-box;
+    padding:15px;
+    margin:0 0 15px;
+    width:100%;
+    height:415px;
+    font-size:14px;
+    font-family:"Microsoft YaHei", "sans-serif";
+    color:#333;
+    line-height:1.6;
+    background-color:#fff;
+    border:1px solid #e9e9e9
+}
+.ifly-mail-btn{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    text-align:center
+}
+.ifly-mail-btn input{
+    margin:0 8px;
+}
+.ifly-mail-btn .ifly-btn{
+    display:none
+}
+.ifly-btn,
+.ifly-btn-blue{
+    min-width:96px;
+    height:36px;
+    padding:0;
+    font-size:14px;
+    box-sizing:border-box;
+    border:1px solid #dedede;
+    background:#fff;
+    color:#333;
+    border-radius:4px;
+    cursor: pointer;
+}
+.ifly-btn:active,
+.ifly-btn-blue:active{
+    opacity:.9;
+    box-shadow:0 1px 1px rgba(0,0,0,.1) inset
+}
+.ifly-btn-blue{
+    background:#3d8eef;
+    border-color:#3d8eef;
+    color:#fff;
+}
+.ifly-btn-blue[disabled]{
+    background-color:#eee;
+    border-color:#dedede;
+    color:#999
+}
+.ifly-feedback{
+}
+.ifly-feedback > li{
+    margin:0 0 12px;
+    padding:16px;
+    border:1px solid #e9e9e9;
+    background:#fff;
+    line-height:1.7;
+    border-radius:3px;
+    cursor:pointer;
+}
+.ifly-arr{
+    margin-top:5px;
+    height:10px;
+    background:url(../img/icons/ifly-menu-down.png) no-repeat 50% 90%;
+}
+.ifly-arr-on{
+    background-image:url(../img/icons/ifly-menu-up.png)
+}
+.ifly-feedback > li .ifly-topic{
+    margin:0 ;
+    transition:all 0.2s linear 0s;
+    font-size:14px;
+    font-family:"Microsoft YaHei", "sans-serif";
+    color:#111;
+    line-height:1.6;
+    height:22px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.ifly-feedback > li .ifly-on{
+    height:auto;
+    white-space:normal;
+}
+.ifly-feedback > li .ifly-topic *{
+    margin:0;
+    list-style:none;
+}
+.ifly-feedback > li .ifly-status{
+    float:right;
+    color:#333;
+}
+.ifly-feedback > li .ifly-code{
+    padding-bottom:5px;
+    color:#999
+}
+.ifly-feedback > li .ifly-date{
+    padding-top:8px
+}
+.ifly-feedback > li.ifly-on{
+    background-image:url(../img/icons/ifly-menu-up.png)
+}
+.ifly-feedback > li.ifly-on .ifly-topic{
+    height:auto;
+}
+.ifly-replybox-content{
+    margin-top: -45px;
+    padding-right: 100px;
+    min-height:45px;
+    padding-bottom:10px;
+}
+.ifly-reply{
+    margin:10px 0 0;
+    border-radius:3px;
+    padding:15px 15px 5px;
+    background:#f9f9f9;
+}
+.ifly-reply > li .ifly-code{
+    color:#f60
+}
+.ifly-reply > li .ifly-status{
+    color:#999
+}
+.ifly-replybox{
+    padding:10px 0;
+    text-align:right;
+}
+.ifly-replybox .ifly-btn{
+    font-size:12px;
+    height:30px;
+    min-width:80px;
+    border-radius:20px;
+    border-color:#3d8eef;
+    color:#3d8eef;
+}
+.ifly-mail-evaluate{
+    padding:60px 20px;
+}
+.ifly-mail-evaluate-pd{
+    padding:18px
+}
+.ifly-icon-nosatisfied,
+.ifly-icon-satisfied{
+    margin-right:5px;
+    width:20px;
+    height:20px;
+    display:inline-block;
+    background:url(../img/u272.png) no-repeat;
+    background-size:100%;
+    vertical-align:-5px;
+}
+.ifly-icon-satisfied{
+    background-image:url(../img/u214.png)
+}
+.ifly-nosatisfied,
+.ifly-satisfied{
+    background:#fff;
+    border-radius:20px;
+    width:96px;
+    height:36px;
+    line-height:34px;
+    font-size:12px;
+    color:#333;
+    text-align:center;
+    border:1px solid #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.ifly-replybox .ifly-satisfied{
+    border-color:#fff;
+}
+.ifly-replybox .ifly-icon-nosatisfied{
+    background-image:url(../img/u212.png);
+}
+.ifly-replybox .ifly-icon-satisfied{
+    background-image:url(../img/u229.png);
+}
+.ifly-mail-evaluate ul{
+    text-align:center;
+}
+.ifly-mail-evaluate .ifly-tips{
+    text-align:center;
+    font-size:14px;
+    color:#111
+}
+.ifly-mail-evaluate li textarea{
+    padding:15px;
+    width:100%;
+    height:70px;
+    overflow:auto;
+    border:0;
+    box-sizing: border-box;
+    background:#f9f9f9
+}
+.ifly-mail-evaluate li{
+    padding:20px 15px 0;
+    display:inline-block;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.ifly-mail-evaluate li.ifly-this .ifly-icon-nosatisfied{
+    background-image:url(../img/u212.png)
+}
+.ifly-mail-evaluate li.ifly-this .ifly-icon-satisfied{
+    background-image:url(../img/u229.png)
+}
+.ifly-mail-evaluate li.ifly-this .ifly-satisfied{
+    color:#3d8eef;
+    border-color:#3d8eef;
+}
+.ifly-mail-evaluate li.ifly-this .ifly-satisfied-on{
+    color:#ff8400;
+    border-color:#ff8400;
+}
+.ifly-mail-evaluate li:last-child{
+    width:100%;
+    text-align:left
+}
+.ifly-reply > li{
+    padding-bottom:0;
+    border-bottom:0;
+}
+.ifly-mail .layui-layer-title{
+    display:none;
+}
+.iflyui-mail-box{
+    padding:48px 0 0;
+    overflow:hidden;
+}
+.ifly-mail-tabs{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#fff;
+    text-align: center;
+    font-size:14px;
+    border-bottom:1px solid #e9e9e9;
+    border-radius:4px 4px 0 0;
+}
+.ifly-mail-tabs li{
+    padding:0 20px;
+    display:inline-block;
+    height:45px;
+    line-height:45px;
+}
+.ifly-mail-tabs li:hover{
+    color:#3d8eef;
+    cursor: pointer;
+}
+.ifly-mail-tabs li.ifly-this{
+    color:#3d8eef;
+    font-weight: bold;
+    background:url(../img/ifly-mail-tabs-bg.jpg) no-repeat 50% bottom;
+}
+.ifly-mail .ifly-mail-tabs{
+    padding: 0 80px 0 20px;
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    background-color: #F8F8F8;
+    border-radius: 2px 2px 0 0;
+}
+.iflyui-aixunfei,
+.iflyui-aixunfei body{
+    overflow:hidden;
+}
+.ifly-mail .layui-layer-setwin a,
+.ifly-mail .layui-layer-setwin a:hover,
+.ifly-mailevaluate .layui-layer-setwin a,
+.ifly-mailevaluate .layui-layer-setwin a:hover{
+    right:0;
+    top:0;
+}
+.ifly-mail .layui-layer-close2:hover{
+    opacity: .7;
+}
+.ifly-mailevaluate{
+    background:#fff
+}
+/*加载提示，不锁定*/
+.ifly-load-tips {
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    background:#4a4a4a url(../img/icons/iflyui-icon-load.gif) no-repeat 50% 50%;
+    background-size: 50%;
+    z-index: 1000;
+}
+#pageFoot{
+    padding:0
+}
+.ifly-message{
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    z-index: 1000;
+    color:#999;
+    text-align:center
+}
+.ifly-message-icon{
+    margin:0 auto;
+    width:120px;
+    height:100px;
+    line-height:100px;
+    background:url(../img/ifly-nodata.png) no-repeat 50% 50%;
+    background-size: 100%;
+}
+.ifly-message-text{
+    line-height:22px
+}
+.ifly-confirm .layui-layer-setwin{
+    display:none
+}
+.ifly-confirm .layui-layer-content{
+    color:#333;
+    text-align:center;
+}
+.ifly-confirm .layui-layer-btn a{
+    margin:0 10px;
+    padding:0;
+    background:#fff;
+    border-radius:2px;
+    min-width:80px;
+    text-align:center;
+}
+.ifly-confirm .layui-layer-btn .layui-layer-btn0{
+    border-color:#dedede;
+    color:#333
+}
+.ifly-confirm .layui-layer-btn{
+    padding-bottom:20px;
+    text-align:center
+}
+.ifly-confirm .layui-layer-btn .layui-layer-btn1{
+    border-color:#3d8eef;
+    background:#3d8eef;
+    color:#fff
+}
+.iflyui-mail-box .warn-num{
+    position:absolute;
+}
+.ifly-salaryresult{
+
+}
